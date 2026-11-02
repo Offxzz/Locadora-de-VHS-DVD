@@ -179,60 +179,91 @@ void moduloCompras() {
 // MÓDULO 1: lOCAÇÕES E RELATÓRIOS
 // Autor: Integrante D - IAN LEUCHE - RGM 04806941-8
 
-void exibirCabecalho() {
-    printf("\n======================================================\n");
-    printf("   RETRO VIDEO LOCADORA - SISTEMA DE GESTAO (VHS/DVD) \n");
-    printf("======================================================\n");
+void registrarLocacao() {
+    struct Locacao nova;
+    float valorDiaria;
+
+    if (totalLocacoes >= 50) {
+        printf("\n[ERRO] Limite de locacoes atingido!\n");
+        return;
+    }
+
+    nova.idLocacao = totalLocacoes + 1;
+
+    printf("\nID do cliente: ");
+    scanf("%d", &nova.idCliente);
+    printf("ID do filme: ");
+    scanf("%d", &nova.idFilme);
+    printf("Quantidade de dias: ");
+    scanf("%d", &nova.diasLocacao);
+
+    printf("Valor da diaria: ");
+    scanf("%f", &valorDiaria);
+
+    nova.valorTotal = nova.diasLocacao * valorDiaria;
+    nova.devolvido = 0;
+
+    historicoLocacoes[totalLocacoes] = nova;
+    totalLocacoes++;
+
+    printf("\nLocacao %d registrada! Total: R$ %.2f\n", nova.idLocacao, nova.valorTotal);
 }
 
+void listarLocacoes() {
+    int i;
 
-void moduloLocacoesRelatorios() {
-    int opcaoLocacao;
+    if (totalLocacoes == 0) {
+        printf("\nNenhuma locacao registrada ainda.\n");
+        return;
+    }
+
+    printf("\n--- LOCACOES REGISTRADAS ---\n");
+    for (i = 0; i < totalLocacoes; i++) {
+        printf("Locacao %d | Cliente %d | Filme %d | %d dia(s) | R$ %.2f | %s\n",
+               historicoLocacoes[i].idLocacao,
+               historicoLocacoes[i].idCliente,
+               historicoLocacoes[i].idFilme,
+               historicoLocacoes[i].diasLocacao,
+               historicoLocacoes[i].valorTotal,
+               historicoLocacoes[i].devolvido ? "Devolvido" : "Em aberto");
+    }
+}
+
+int main() {
+    int opcao;
+
     do {
-        printf("\n--- [LOCACOES E RELATORIOS ANALITICOS] ---\n");
-        printf("1. Registrar Nova Locacao no Balcao (Cruza Cliente + Filme)\n");
-        printf("2. Registrar Devolucao (Calcula Atraso e Multa)\n");
-        printf("3. Cancelar / Estornar Locacao\n");
-        printf("4. [RELATORIO] Filme Mais Alugado\n");
-        printf("5. [RELATORIO] Cliente VIP (Maior Numero de Locacoes)\n");
-        printf("6. [RELATORIO] Locacoes Realizadas por um Cliente Especifico\n");
-        printf("7. [RELATORIO] Locacoes em Aberto (Nao Devolvidas)\n");
-        printf("0. Encerrar o Sistema\n");
-        printf("Escolha uma acao: ");
-        scanf("%d", &opcaoLocacao);
+        printf("\n======================================\n");
+        printf("   RETRO VIDEO LOCADORA - LOCACOES    \n");
+        printf("======================================\n");
+        printf("1. Registrar Nova Locacao\n");
+        printf("2. Listar Locacoes\n");
+        printf("3. Registrar Devolucao\n");
+        printf("4. Relatorios\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
-        switch (opcaoLocacao) {
+        switch (opcao) {
             case 1:
-                printf("\n[Em construcao] Lancamento de locacao vinculando ID Cliente e ID Filme...\n");
-                printf("Campos previstos: ID Locacao, ID Cliente, ID Filme, Midia, Dias.\n");
+                registrarLocacao();
                 break;
             case 2:
-                printf("\n[Em construcao] Devolucao de midia e calculo de multa por atraso...\n");
+                listarLocacoes();
                 break;
             case 3:
-                printf("\n[Em construcao] Estorno de locacao por ID...\n");
+                printf("\n[Em construcao] Devolucao de filme...\n");
                 break;
             case 4:
-                printf("\n[Em construcao] Calculando ranking do filme mais alugado...\n");
-                break;
-            case 5:
-                printf("\n[Em construcao] Identificando cliente com maior volume de locacoes...\n");
-                break;
-            case 6:
-                printf("\n[Em construcao] Filtrando filmes alugados por um ID de cliente...\n");
-                break;
-            case 7:
-                printf("\n[Em construcao] Listando locacoes ainda nao devolvidas...\n");
+                printf("\n[Em construcao] Relatorios de locacoes...\n");
                 break;
             case 0:
-                printf("\nEncerrando o sistema Retro Video Locadora... Ate logo!\n");
+                printf("\nEncerrando o sistema... Ate logo!\n");
                 break;
             default:
-                printf("\n[ERRO] Opcao invalida no Modulo de Locacoes!\n");
+                printf("\n[ERRO] Opcao invalida!\n");
         }
-    } while (opcaoLocacao != 0);
+    } while (opcao != 0);
+
+    return 0;
 }
-
-
-
-
