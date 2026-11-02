@@ -18,7 +18,7 @@ struct Cliente {
 struct Cliente listaClientes[50];
 int totalClientes = 0;
 
-// 2. Perspectiva do integrante B: CADASTRO DO CAT¡LOGO DE FILMES
+// 2. Perspectiva do integrante B: CADASTRO DO CAT√ÅLOGO DE FILMES
 struct Filme {
     int id;
     char titulo[50];
@@ -30,7 +30,7 @@ struct Filme {
 struct Filme filmes[50];
 int total = 0;
 
-//3. Perspectiva do integrante C: COMPRA DE MÕDIAS/FORNECEDORES
+//3. Perspectiva do integrante C: COMPRA DE M√çDIAS/FORNECEDORES
 struct CompraMidia {
     int idCompra;
     char descricao[40];
@@ -41,7 +41,7 @@ struct CompraMidia {
 struct CompraMidia registroCompras[50];
 int totalCompras = 0;
 
-//4. Perspectiva do integrante D: LOCA«’ES E RELAT”RIOS
+//4. Perspectiva do integrante D: LOCA√á√ïES E RELAT√ìRIOS
 struct Locacao {
     int idLocacao;
     int idClienteLocador;  
@@ -56,8 +56,8 @@ struct Locacao historicoLocacoes[50];
 int totalLocacoes = 0;
 
 
-// M”DULO 1: PERSPECTIVA DE CLIENTES
-// Autor: Integrante A - LEONARDO BARTOSZEWSKI PINHEIRO
+// M√ìDULO 1: PERSPECTIVA DE CLIENTES
+// Autor: Integrante A - LEONARDO BARTOSZEWSKI PINHEIRO - RGM 04735271-0
 
 void moduloClientes() {
     int opcaoCliente;
@@ -94,72 +94,32 @@ void moduloClientes() {
 }
 
 
-// M”DULO 2: CAT¡LOGO DE FILMES
-// Autor: Integrante B - MATHEUS SOUZA DOS SANTOS - RGM 47830824
+// M√ìDULO 2: CAT√ÅLOGO DE FILMES
+// Autor: Integrante B - MATHEUS SOUZA DOS SANTOS - RGM 04783082-4
 
 void cadastrarFilme() {
-    if (total >= 50) {
-        printf("Catalogo cheio!\n");
-        return;
-    }
     filmes[total].id = total + 1;
-    printf("Titulo: ");
-    scanf("%s", filmes[total].titulo);
-    printf("Ano: ");
-    scanf("%d", &filmes[total].ano);
-    printf("Preco: ");
-    scanf("%f", &filmes[total].preco);
-    filmes[total].ativo = 1;
+    printf("Titulo, ano e preco: ");
+    scanf("%s %d %f", filmes[total].titulo, &filmes[total].ano, &filmes[total].preco);
     total++;
-    printf("Filme cadastrado!\n");
 }
 
 void listarFilmes() {
     int i;
     for (i = 0; i < total; i++) {
-        if (filmes[i].ativo == 1) {
-            printf("%d - %s - %d - R$ %.2f\n", filmes[i].id, filmes[i].titulo, filmes[i].ano, filmes[i].preco);
-        }
+        printf("%d - %s - %d - R$ %.2f\n", filmes[i].id, filmes[i].titulo, filmes[i].ano, filmes[i].preco);
     }
-}
-
-void editarFilme() {
-    int id;
-    printf("ID do filme: ");
-    scanf("%d", &id);
-    if (id < 1 || id > total || filmes[id - 1].ativo == 0) {
-        printf("Filme nao encontrado!\n");
-        return;
-    }
-    printf("Novo preco: ");
-    scanf("%f", &filmes[id - 1].preco);
-}
-
-void removerFilme() {
-    int id;
-    printf("ID do filme: ");
-    scanf("%d", &id);
-    if (id < 1 || id > total || filmes[id - 1].ativo == 0) {
-        printf("Filme nao encontrado!\n");
-        return;
-    }
-    filmes[id - 1].ativo = 0;
 }
 
 void moduloFilmes() {
     int opcao;
     do {
-        printf("\n--- CATALOGO DE FILMES ---\n");
-        printf("1. Cadastrar\n2. Listar\n3. Editar\n4. Remover\n0. Voltar\n");
-        printf("Opcao: ");
+        printf("\n1. Cadastrar\n2. Listar\n3. Editar\n4. Remover\n0. Voltar\nOpcao: ");
         scanf("%d", &opcao);
         switch (opcao) {
             case 1: cadastrarFilme(); break;
             case 2: listarFilmes(); break;
-            case 3: editarFilme(); break;
-            case 4: removerFilme(); break;
-            case 0: break;
-            default: printf("Opcao invalida!\n");
+            case 3: case 4: printf("[Em construcao]\n"); break;
         }
     } while (opcao != 0);
 }
@@ -167,21 +127,17 @@ void moduloFilmes() {
 int main() {
     int opcao;
     do {
-        printf("\n=== LOCADORA VHS ===\n");
-        printf("1. Catalogo de Filmes\n0. Sair\n");
-        printf("Opcao: ");
+        printf("\n1. Catalogo de Filmes\n0. Sair\nOpcao: ");
         scanf("%d", &opcao);
         switch (opcao) {
             case 1: moduloFilmes(); break;
-            case 0: break;
-            default: printf("Opcao invalida!\n");
         }
     } while (opcao != 0);
     return 0;
 }
 
-// M”DULO 1: COMPRA DE MÕDIAS E FORNECEDORES
-// Autor: Integrante C - JAISON ALAN - RGM 
+// M√ìDULO 1: COMPRA DE M√çDIAS E FORNECEDORES
+// Autor: Integrante C - JAISON ALAN - RGM 04762834-1
 
 void moduloCompras() {
     int opcaoCompra;
@@ -252,8 +208,8 @@ void moduloCompras() {
     } while (opcaoCompra != 0);
 }
 
-// M”DULO 1: lOCA«’ES E RELAT”RIOS
-// Autor: Integrante D - IAN LEUCHE - RGM
+// M√ìDULO 1: lOCA√á√ïES E RELAT√ìRIOS
+// Autor: Integrante D - IAN LEUCHE - RGM 04806941-8
 
 void exibirCabecalho() {
     printf("\n======================================================\n");
