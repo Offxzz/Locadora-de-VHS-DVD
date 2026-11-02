@@ -139,11 +139,18 @@ int main() {
 // MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
 // Autor: Integrante C - JAISON ALAN - RGM 04762834-1
 
+struct CompraMidia {
+    int idCompra;
+    char descricao[40];
+    char fornecedor[40];
+    float custoCompra;
+    int quantidade;
+};
+struct CompraMidia registroCompras[50];
+int totalCompras = 0;
+
 void moduloCompras() {
     int opcaoCompra;
-    int i;
-    float totalGeral;
-
     do {
         printf("\n--- [MODULO 3: COMPRAS DE MIDIAS / FORNECEDORES (Integrante C)] ---\n");
         printf("1. Registrar Compra de Midias\n");
@@ -154,50 +161,11 @@ void moduloCompras() {
 
         switch (opcaoCompra) {
             case 1:
-                if (totalCompras >= 50) {
-                    printf("\n[ERRO] Limite de 50 compras atingido!\n");
-                    break;
-                }
-                registroCompras[totalCompras].idCompra = totalCompras + 1;
-
-                printf("\nDescricao da midia (ex.: Matrix (VHS)): ");
-                scanf(" %39[^\n]", registroCompras[totalCompras].descricao);
-
-                printf("Fornecedor: ");
-                scanf(" %39[^\n]", registroCompras[totalCompras].fornecedor);
-
-                printf("Custo de cada unidade (R$): ");
-                scanf("%f", &registroCompras[totalCompras].custoCompra);
-
-                printf("Quantidade comprada: ");
-                scanf("%d", &registroCompras[totalCompras].quantidade);
-
-                printf("\n[OK] Compra %d registrada! Total: R$ %.2f\n",
-                       registroCompras[totalCompras].idCompra,
-                       registroCompras[totalCompras].custoCompra * registroCompras[totalCompras].quantidade);
-
-                printf("[Em construcao] Enviando midias para o estoque...\n");
-
-                totalCompras++;
+                printf("\n[Em construcao] Rotina de Registro de Compra...\n");
+                printf("Campos previstos: ID, Descricao, Fornecedor, Custo e Quantidade.\n");
                 break;
             case 2:
-                printf("\n--- Compras Registradas ---\n");
-                if (totalCompras == 0) {
-                    printf("Nenhuma compra registrada.\n");
-                    break;
-                }
-                totalGeral = 0;
-                for (i = 0; i < totalCompras; i++) {
-                    printf("Compra %d | %s | Fornecedor: %s | Qtd: %d | Unidade: R$ %.2f | Total: R$ %.2f\n",
-                           registroCompras[i].idCompra,
-                           registroCompras[i].descricao,
-                           registroCompras[i].fornecedor,
-                           registroCompras[i].quantidade,
-                           registroCompras[i].custoCompra,
-                           registroCompras[i].custoCompra * registroCompras[i].quantidade);
-                    totalGeral = totalGeral + registroCompras[i].custoCompra * registroCompras[i].quantidade;
-                }
-                printf("Total geral das compras: R$ %.2f\n", totalGeral);
+                printf("\n[Em construcao] Rotina de Consulta de Compras...\n");
                 break;
             case 0:
                 printf("\nRetornando ao menu principal...\n");
