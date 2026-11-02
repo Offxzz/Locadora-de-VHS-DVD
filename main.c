@@ -44,8 +44,8 @@ int totalCompras = 0;
 //4. Perspectiva do integrante D: LOCAÇÕES E RELATÓRIOS
 struct Locacao {
     int idLocacao;
-    int idClienteLocador;  
-    int idFilmeAlugado;    
+    int idCliente;  
+    int idFilme;    
     int tipoMidia;         
     int diasLocacao;
     float valorTotal;
@@ -124,30 +124,8 @@ void moduloFilmes() {
     } while (opcao != 0);
 }
 
-int main() {
-    int opcao;
-    do {
-        printf("\n1. Catalogo de Filmes\n0. Sair\nOpcao: ");
-        scanf("%d", &opcao);
-        switch (opcao) {
-            case 1: moduloFilmes(); break;
-        }
-    } while (opcao != 0);
-    return 0;
-}
-
 // MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
 // Autor: Integrante C - JAISON ALAN - RGM 04762834-1
-
-struct CompraMidia {
-    int idCompra;
-    char descricao[40];
-    char fornecedor[40];
-    float custoCompra;
-    int quantidade;
-};
-struct CompraMidia registroCompras[50];
-int totalCompras = 0;
 
 void moduloCompras() {
     int opcaoCompra;
@@ -229,7 +207,7 @@ void listarLocacoes() {
     }
 }
 
-int main() {
+void moduloLocacoesRelatorios() {
     int opcao;
 
     do {
@@ -264,6 +242,50 @@ int main() {
                 printf("\n[ERRO] Opcao invalida!\n");
         }
     } while (opcao != 0);
+
+}
+
+
+void exibirCabecalho() {
+    printf("\n====================================================\n");
+    printf("   RETRO VIDEO LOCADORA - SISTEMA DE GESTAO\n");
+    printf("====================================================\n");
+}
+
+int main() {
+    int opcaoPrincipal;
+
+    do {
+        exibirCabecalho();
+        printf("SELECIONE A PERSPECTIVA DO SISTEMA:\n");
+        printf("1. Modulo de Clientes (Integrante A)\n");
+        printf("2. Modulo de Filmes / Catalogo (Integrante B)\n");
+        printf("3. Modulo de Compras / Fornecedores (Integrante C)\n");
+        printf("4. Modulo de Locacoes e Relatorios (Integrante D)\n");
+        printf("0. Encerrar o Sistema\n");
+        printf("Digite a opcao desejada: ");
+        scanf("%d", &opcaoPrincipal);
+
+        switch (opcaoPrincipal) {
+            case 1:
+                moduloClientes();
+                break;
+            case 2:
+                moduloFilmes();
+                break;
+            case 3:
+                moduloCompras();
+                break;
+            case 4:
+                moduloLocacoesRelatorios();
+                break;
+            case 0:
+                printf("\nEncerrando o sistema... Ate logo!\n");
+                break;
+            default:
+                printf("\n[ALERTA] Opcao invalida! Digite um numero de 0 a 4.\n");
+        }
+    } while (opcaoPrincipal != 0);
 
     return 0;
 }
