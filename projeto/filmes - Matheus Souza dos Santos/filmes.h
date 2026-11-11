@@ -40,11 +40,12 @@ void carregarFilmesCSV() {
     FILE *arq = fopen("filmes.csv", "r");
     if (arq == NULL) return;
     totalFilmes = 0;
-    while (totalFilmes < MAX_FILMES &&
-           fscanf(arq, "%d;%49[^;];%d;%f;%d\n",
-                  &filmes[totalFilmes].id, filmes[totalFilmes].titulo,
-                  &filmes[totalFilmes].ano, &filmes[totalFilmes].preco,
-                  &filmes[totalFilmes].quantidade) == 5) {
+    while (totalFilmes < MAX_FILMES && fscanf(arq, "%d;%49[^;];%d;%f;%d\n",
+           &filmes[totalFilmes].id,
+           filmes[totalFilmes].titulo,
+           &filmes[totalFilmes].ano,
+           &filmes[totalFilmes].preco,
+           &filmes[totalFilmes].quantidade) >= 4) {
         totalFilmes++;
     }
     fclose(arq);
