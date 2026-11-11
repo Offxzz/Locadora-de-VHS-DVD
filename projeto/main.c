@@ -1,32 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
+#include "utils.h"
 #include "filmes - Matheus Souza dos Santos/filmes.h"
-
-// Matheus Souza dos Santos - RGM 04783082-4
-void limparTela() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
-
-
-// PARTE 1: MODELAGEM DE DADOS 
-
-
-//1. Perspectiva do integrante A: CLIENTES DA LOCADORA DE VHS/DVD
-struct Cliente {
-    int idCliente;
-    char nome[50];
-    char telefone[20];
-    int locacoesAtivas;
-    float multaPendente; // multa por atraso (R$)
-    int ativo; // 1 = Ativo, 0 = Removido
-};
-
-struct Cliente listaClientes[50];
-int totalClientes = 0;
+#include "clientes - Leonardo Bartoszewski Pinheiro/clientes.h"
 
 //3. Perspectiva do integrante C: COMPRA DE MÍDIAS/FORNECEDORES
 struct CompraMidia {
@@ -52,44 +29,6 @@ struct Locacao {
 
 struct Locacao historicoLocacoes[50];
 int totalLocacoes = 0;
-
-
-// MÓDULO 1: PERSPECTIVA DE CLIENTES
-// Autor: Integrante A - LEONARDO BARTOSZEWSKI PINHEIRO - RGM 04735271-0
-
-void moduloClientes() {
-    int opcaoCliente;
-    do {
-        printf("\n--- [MODULO 1: GESTAO DE CLIENTES (Integrante A)] ---\n");
-        printf("1. Cadastrar Novo Cliente\n");
-        printf("2. Listar / Buscar Clientes\n");
-        printf("3. Editar Dados de Cliente\n");
-        printf("4. Remover Cliente\n");
-        printf("0. Voltar ao Menu Principal\n");
-        printf("Escolha uma acao: ");
-        scanf("%d", &opcaoCliente);
-
-        switch (opcaoCliente) {
-            case 1:
-                printf("\n[Em construcao] Rotina de Cadastro de Cliente...\n");
-                break;
-            case 2:
-                printf("\n[Em construcao] Rotina de Busca e Listagem de Clientes...\n");
-                break;
-            case 3:
-                printf("\n[Em construcao] Rotina de Edicao de Cliente por ID...\n");
-                break;
-            case 4:
-                printf("\n[Em construcao] Rotina de Remocao de Cliente...\n");
-                break;
-            case 0:
-                printf("\nRetornando ao menu principal...\n");
-                break;
-            default:
-                printf("\n[ERRO] Opcao invalida no Modulo de Clientes!\n");
-        }
-    } while (opcaoCliente != 0);
-}
 
 
 // MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
@@ -223,7 +162,9 @@ void exibirCabecalho() {
 int main() {
     int opcaoPrincipal;
 
+    setlocale(LC_CTYPE, "Portuguese"); 
     carregarFilmesCSV();
+    iniciarClientes(); 
 
     do {
         exibirCabecalho();
