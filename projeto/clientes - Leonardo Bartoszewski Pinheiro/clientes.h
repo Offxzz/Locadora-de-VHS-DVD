@@ -1,10 +1,10 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
 
-// ============================================================================
+
 // CLIENTES.H - MODULO 1: PERSPECTIVA DE CLIENTES
 // Autor: Integrante A - LEONARDO BARTOSZEWSKI PINHEIRO - RGM 04735271-0
-// ============================================================================
+
 #include <stdio.h>
 #include <string.h>
 #include "utils.h"
@@ -12,9 +12,9 @@
 #define MAX_CLIENTES 50
 #define ARQUIVO_CLIENTES "clientes.csv"
 
-// ----------------------------------------------------------------------------
-// MODELAGEM DE DADOS (escopo global)
-// ----------------------------------------------------------------------------
+
+// MODELAGEM DE DADOS 
+
 struct Cliente {
     int idCliente;
     char nome[50];
@@ -26,10 +26,6 @@ struct Cliente {
 
 struct Cliente listaClientes[MAX_CLIENTES];
 int totalClientes = 0;
-
-// ----------------------------------------------------------------------------
-// FUNCOES DE APOIO
-// ----------------------------------------------------------------------------
 
 // Descobre o proximo ID livre (maior ID existente + 1)
 int proximoIdCliente() {
@@ -103,12 +99,11 @@ void salvarClientesCSV() {
     fclose(arquivo);
 }
 
-// Le o arquivo para o vetor. Devolve quantos clientes carregou (0 se nao existe).
 int carregarClientesCSV() {
     FILE *arquivo = fopen(ARQUIVO_CLIENTES, "r");
 
     if (arquivo == NULL) {
-        return 0; // arquivo ainda nao existe
+        return 0;
     }
     totalClientes = 0;
     while (totalClientes < MAX_CLIENTES &&
@@ -125,7 +120,6 @@ int carregarClientesCSV() {
     return totalClientes;
 }
 
-// Cria 8 clientes de exemplo na primeira execucao e grava o CSV
 void criarMassaDadosClientes() {
     inserirCliente("Ana Souza",       "(41) 99999-0001", 0, 0.00);
     inserirCliente("Bruno Lima",      "(41) 99999-0002", 2, 0.00);
@@ -145,10 +139,6 @@ void iniciarClientes() {
     }
 }
 
-// ----------------------------------------------------------------------------
-// OPERACOES (CRUD)
-// ----------------------------------------------------------------------------
-
 // 1. CADASTRAR
 void cadastrarCliente() {
     char nome[50];
@@ -167,7 +157,6 @@ void cadastrarCliente() {
     scanf(" %19[^\n]", telefone);
     limparBuffer();
 
-    // O ';' e o separador do CSV: se aparecesse no nome, quebraria o arquivo
     if (strchr(nome, ';') != NULL || strchr(telefone, ';') != NULL) {
         printf("\n[ERRO] Nao use o caractere ';' no nome ou telefone!\n");
         return;
@@ -178,7 +167,7 @@ void cadastrarCliente() {
     printf("\nCliente cadastrado! ID: %d\n", listaClientes[totalClientes - 1].idCliente);
 }
 
-// 2. LISTAR (so mostra quem esta ativo)
+// 2. LISTAR CLIENTES ATIVOS
 void listarClientes() {
     int i;
     int achou = 0;
@@ -195,7 +184,7 @@ void listarClientes() {
     }
 }
 
-// 3. BUSCAR por nome (strstr acha um pedaco do nome; diferencia maiuscula)
+// 3. BUSCAR NOME
 void buscarClientePorNome() {
     char busca[50];
     int i;
@@ -217,7 +206,7 @@ void buscarClientePorNome() {
     }
 }
 
-// 4. EDITAR por ID
+// 4. EDITAR POR ID
 void editarCliente() {
     int id;
     int indice;
@@ -270,7 +259,7 @@ void editarCliente() {
             return;
     }
 
-    salvarClientesCSV(); // reflete a edicao no arquivo
+    salvarClientesCSV(); 
     printf("\nCliente atualizado!\n");
 }
 
@@ -289,7 +278,6 @@ void removerCliente() {
         return;
     }
 
-    // Regra de negocio: quem ainda tem filme alugado nao pode sair
     if (listaClientes[indice].locacoesAtivas > 0) {
         printf("[ERRO] %s ainda tem %d locacao(oes) ativa(s)!\n",
                listaClientes[indice].nome, listaClientes[indice].locacoesAtivas);
@@ -304,13 +292,12 @@ void removerCliente() {
     }
 
     listaClientes[indice].ativo = 0;
-    salvarClientesCSV(); // reflete a remocao no arquivo
+    salvarClientesCSV(); 
     printf("\nCliente removido!\n");
 }
 
-// ----------------------------------------------------------------------------
+
 // SUBMENU DO MODULO
-// ----------------------------------------------------------------------------
 void moduloClientes() {
     int opcaoCliente;
 
