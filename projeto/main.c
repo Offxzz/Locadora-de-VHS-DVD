@@ -1,5 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "filmes - Matheus Souza dos Santos/filmes.h"
+
+// Matheus Souza dos Santos - RGM 04783082-4
+void limparTela() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
 
 
 // PARTE 1: MODELAGEM DE DADOS 
@@ -17,18 +27,6 @@ struct Cliente {
 
 struct Cliente listaClientes[50];
 int totalClientes = 0;
-
-// 2. Perspectiva do integrante B: CADASTRO DO CATÁLOGO DE FILMES
-struct Filme {
-    int id;
-    char titulo[50];
-    int ano;
-    float preco;
-    int ativo;
-};
-
-struct Filme filmes[50];
-int total = 0;
 
 //3. Perspectiva do integrante C: COMPRA DE MÍDIAS/FORNECEDORES
 struct CompraMidia {
@@ -93,36 +91,6 @@ void moduloClientes() {
     } while (opcaoCliente != 0);
 }
 
-
-// MÓDULO 2: CATÁLOGO DE FILMES
-// Autor: Integrante B - MATHEUS SOUZA DOS SANTOS - RGM 04783082-4
-
-void cadastrarFilme() {
-    filmes[total].id = total + 1;
-    printf("Titulo, ano e preco: ");
-    scanf("%s %d %f", filmes[total].titulo, &filmes[total].ano, &filmes[total].preco);
-    total++;
-}
-
-void listarFilmes() {
-    int i;
-    for (i = 0; i < total; i++) {
-        printf("%d - %s - %d - R$ %.2f\n", filmes[i].id, filmes[i].titulo, filmes[i].ano, filmes[i].preco);
-    }
-}
-
-void moduloFilmes() {
-    int opcao;
-    do {
-        printf("\n1. Cadastrar\n2. Listar\n3. Editar\n4. Remover\n0. Voltar\nOpcao: ");
-        scanf("%d", &opcao);
-        switch (opcao) {
-            case 1: cadastrarFilme(); break;
-            case 2: listarFilmes(); break;
-            case 3: case 4: printf("[Em construcao]\n"); break;
-        }
-    } while (opcao != 0);
-}
 
 // MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
 // Autor: Integrante C - JAISON ALAN - RGM 04762834-1
@@ -255,6 +223,8 @@ void exibirCabecalho() {
 int main() {
     int opcaoPrincipal;
 
+    carregarFilmesCSV();
+
     do {
         exibirCabecalho();
         printf("SELECIONE A PERSPECTIVA DO SISTEMA:\n");
@@ -272,6 +242,7 @@ int main() {
                 break;
             case 2:
                 moduloFilmes();
+                limparTela();
                 break;
             case 3:
                 moduloCompras();
