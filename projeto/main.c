@@ -5,7 +5,7 @@
 #include "filmes - Matheus Souza dos Santos/filmes.h"
 #include "clientes - Leonardo Bartoszewski Pinheiro/clientes.h"
 
-//3. Perspectiva do integrante C: COMPRA DE MÍDIAS/FORNECEDORES
+//3. Perspectiva do integrante C: COMPRA DE MÃDIAS/FORNECEDORES
 struct CompraMidia {
     int idCompra;
     char descricao[40];
@@ -16,7 +16,7 @@ struct CompraMidia {
 struct CompraMidia registroCompras[50];
 int totalCompras = 0;
 
-//4. Perspectiva do integrante D: LOCAÇÕES E RELATÓRIOS
+//4. Perspectiva do integrante D: LOCAÃ‡Ã•ES E RELATÃ“RIOS
 struct Locacao {
     int idLocacao;
     int idCliente;  
@@ -31,7 +31,7 @@ struct Locacao historicoLocacoes[50];
 int totalLocacoes = 0;
 
 
-// MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
+// MÃ“DULO 1: COMPRA DE MÃDIAS E FORNECEDORES
 // Autor: Integrante C - JAISON ALAN - RGM 04762834-1
 
 void moduloCompras() {
@@ -61,7 +61,7 @@ void moduloCompras() {
     } while (opcaoCompra != 0);
 }
 
-// MÓDULO 1: lOCAÇÕES E RELATÓRIOS
+// MÃ“DULO 1: lOCAÃ‡Ã•ES E RELATÃ“RIOS
 // Autor: Integrante D - IAN LEUCHE - RGM 04806941-8
 
 void registrarLocacao() {
@@ -169,10 +169,10 @@ int main() {
     do {
         exibirCabecalho();
         printf("SELECIONE A PERSPECTIVA DO SISTEMA:\n");
-        printf("1. Modulo de Clientes (Integrante A)\n");
-        printf("2. Modulo de Filmes / Catalogo (Integrante B)\n");
-        printf("3. Modulo de Compras / Fornecedores (Integrante C)\n");
-        printf("4. Modulo de Locacoes e Relatorios (Integrante D)\n");
+        printf("1. Modulo de Clientes (Leonardo Bartoszewski Pinheiro)\n");
+        printf("2. Modulo de Filmes / Catalogo (Matheus Souza dos Santos)\n");
+        printf("3. Modulo de Compras / Fornecedores (Jaison Alan)\n");
+        printf("4. Modulo de Locacoes e Relatorios (Ian Leuche)\n");
         printf("0. Encerrar o Sistema\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opcaoPrincipal);
