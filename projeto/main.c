@@ -61,8 +61,10 @@ int main() {
     setlocale(LC_CTYPE, "Portuguese"); 
     carregarFilmesCSV();
     iniciarClientes(); 
+    carregarLocacoesCSV();
 
     do {
+        limpartela();
         exibirCabecalho();
         printf("SELECIONE A PERSPECTIVA DO SISTEMA:\n");
         printf("1. Modulo de Clientes (Leonardo Bartoszewski Pinheiro)\n");
@@ -71,7 +73,7 @@ int main() {
         printf("4. Modulo de Locacoes e Relatorios (Ian Leuche)\n");
         printf("0. Encerrar o Sistema\n");
         printf("Digite a opcao desejada: ");
-        scanf("%d", &opcaoPrincipal);
+        opcaoPrincipal = lerInteiro();
 
         switch (opcaoPrincipal) {
             case 1:
