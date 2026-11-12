@@ -64,7 +64,7 @@ int main() {
     carregarLocacoesCSV();
 
     do {
-        limpartela();
+        limparTela();
         exibirCabecalho();
         printf("SELECIONE A PERSPECTIVA DO SISTEMA:\n");
         printf("1. Modulo de Clientes (Leonardo Bartoszewski Pinheiro)\n");
