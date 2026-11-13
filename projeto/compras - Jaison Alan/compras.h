@@ -56,7 +56,7 @@ void pausarCompra() {
 int filmeExisteCompra(int idFilme) {
     int i;
     for (i = 0; i < totalFilmes; i++) {
-        if (catalogoFilmes[i].idFilme == idFilme) {
+        if (filmes[i].id == idFilme) {
             return 1;
         }
     }
@@ -66,16 +66,13 @@ int filmeExisteCompra(int idFilme) {
 void atualizarEstoqueCompra(int idFilme, int variacao) {
     int i;
     for (i = 0; i < totalFilmes; i++) {
-        if (catalogoFilmes[i].idFilme == idFilme) {
-            catalogoFilmes[i].copiasDisponiveis = catalogoFilmes[i].copiasDisponiveis + variacao;
-            if (catalogoFilmes[i].copiasDisponiveis < 0) {
-                catalogoFilmes[i].copiasDisponiveis = 0;
+        if (filmes[i].id == idFilme) {
+            filmes[i].quantidade = filmes[i].quantidade + variacao;
+            if (filmes[i].quantidade < 0) {
+                filmes[i].quantidade = 0;
             }
-            if (catalogoFilmes[i].copiasDisponiveis > 0) {
-                catalogoFilmes[i].disponivel = 1;
-            } else {
-                catalogoFilmes[i].disponivel = 0;
-            }
+            salvarFilmesCSV();   
+            return;
         }
     }
 }
