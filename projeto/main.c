@@ -4,49 +4,9 @@
 #include "utils.h"
 #include "clientes - Leonardo Bartoszewski Pinheiro/clientes.h"
 #include "filmes - Matheus Souza dos Santos/filmes.h"
+#include "compras - Jaison Alan/compras.h"
 #include "locacoes - Ian Leuche/locacoes.h"
 
-//3. Perspectiva do integrante C: COMPRA DE MÍDIAS/FORNECEDORES
-struct CompraMidia {
-    int idCompra;
-    char descricao[40];
-    char fornecedor[40];
-    float custoCompra;
-    int quantidade;
-};
-struct CompraMidia registroCompras[50];
-int totalCompras = 0;
-
-
-// MÓDULO 1: COMPRA DE MÍDIAS E FORNECEDORES
-// Autor: Integrante C - JAISON ALAN - RGM 04762834-1
-
-void moduloCompras() {
-    int opcaoCompra;
-    do {
-        printf("\n--- [MODULO 3: COMPRAS DE MIDIAS / FORNECEDORES (Integrante C)] ---\n");
-        printf("1. Registrar Compra de Midias\n");
-        printf("2. Consultar Compras Realizadas\n");
-        printf("0. Voltar ao Menu Principal\n");
-        printf("Escolha uma acao: ");
-        scanf("%d", &opcaoCompra);
-
-        switch (opcaoCompra) {
-            case 1:
-                printf("\n[Em construcao] Rotina de Registro de Compra...\n");
-                printf("Campos previstos: ID, Descricao, Fornecedor, Custo e Quantidade.\n");
-                break;
-            case 2:
-                printf("\n[Em construcao] Rotina de Consulta de Compras...\n");
-                break;
-            case 0:
-                printf("\nRetornando ao menu principal...\n");
-                break;
-            default:
-                printf("\n[ERRO] Opcao invalida no Modulo de Compras!\n");
-        }
-    } while (opcaoCompra != 0);
-}
 
 
 void exibirCabecalho() {
@@ -62,6 +22,7 @@ int main() {
     carregarFilmesCSV();
     iniciarClientes(); 
     carregarLocacoesCSV();
+    carregarComprasCSV();
 
     do {
         limparTela();
