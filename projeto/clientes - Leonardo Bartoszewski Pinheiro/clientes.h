@@ -12,22 +12,18 @@
 #define MAX_CLIENTES 50
 #define ARQUIVO_CLIENTES "clientes.csv"
 
-
-// MODELAGEM DE DADOS 
-
 struct Cliente {
     int idCliente;
     char nome[50];
     char telefone[20];
     int locacoesAtivas;
-    float multaPendente; // multa por atraso (R$)
-    int ativo;           // 1 = Ativo, 0 = Removido
+    float multaPendente; 
+    int ativo;           
 };
 
 struct Cliente listaClientes[MAX_CLIENTES];
 int totalClientes = 0;
 
-// Descobre o proximo ID livre (maior ID existente + 1)
 int proximoIdCliente() {
     int i;
     int maior = 0;
@@ -39,7 +35,6 @@ int proximoIdCliente() {
     return maior + 1;
 }
 
-// Coloca um cliente novo no fim do vetor (quem chama confere se ha espaco)
 void inserirCliente(char nome[], char telefone[], int locacoes, float multa) {
     struct Cliente novo;
     novo.idCliente = proximoIdCliente();
@@ -52,8 +47,6 @@ void inserirCliente(char nome[], char telefone[], int locacoes, float multa) {
     totalClientes++;
 }
 
-// Procura um cliente ativo pelo ID. Devolve a posicao no vetor ou -1.
-// (Os outros modulos, como Locacoes, podem usar esta funcao.)
 int buscarIndiceClientePorId(int id) {
     int i;
     for (i = 0; i < totalClientes; i++) {
@@ -64,7 +57,6 @@ int buscarIndiceClientePorId(int id) {
     return -1;
 }
 
-// Mostra uma linha com os dados do cliente da posicao i
 void exibirCliente(int i) {
     printf("ID: %d | %s | Tel: %s | Locacoes ativas: %d | Multa: R$ %.2f\n",
            listaClientes[i].idCliente,
@@ -74,11 +66,6 @@ void exibirCliente(int i) {
            listaClientes[i].multaPendente);
 }
 
-// ----------------------------------------------------------------------------
-// ARQUIVO CSV (separador ;)  ->  id;nome;telefone;locacoesAtivas;multa;ativo
-// ----------------------------------------------------------------------------
-
-// Grava TODO o vetor no arquivo (o "w" apaga o conteudo antigo)
 void salvarClientesCSV() {
     FILE *arquivo = fopen(ARQUIVO_CLIENTES, "w");
     int i;
@@ -132,14 +119,12 @@ void criarMassaDadosClientes() {
     salvarClientesCSV();
 }
 
-// Chamar UMA vez no inicio do main: carrega o CSV ou cria os dados de exemplo
 void iniciarClientes() {
     if (carregarClientesCSV() == 0) {
         criarMassaDadosClientes();
     }
 }
 
-// 1. CADASTRAR
 void cadastrarCliente() {
     char nome[50];
     char telefone[20];
@@ -167,7 +152,6 @@ void cadastrarCliente() {
     printf("\nCliente cadastrado! ID: %d\n", listaClientes[totalClientes - 1].idCliente);
 }
 
-// 2. LISTAR CLIENTES ATIVOS
 void listarClientes() {
     int i;
     int achou = 0;
@@ -184,7 +168,6 @@ void listarClientes() {
     }
 }
 
-// 3. BUSCAR NOME
 void buscarClientePorNome() {
     char busca[50];
     int i;
@@ -206,7 +189,6 @@ void buscarClientePorNome() {
     }
 }
 
-// 4. EDITAR POR ID
 void editarCliente() {
     int id;
     int indice;
@@ -263,7 +245,6 @@ void editarCliente() {
     printf("\nCliente atualizado!\n");
 }
 
-// 5. REMOVER por ID (remocao logica: ativo = 0)
 void removerCliente() {
     int id;
     int indice;
@@ -296,8 +277,6 @@ void removerCliente() {
     printf("\nCliente removido!\n");
 }
 
-
-// SUBMENU DO MODULO
 void moduloClientes() {
     int opcaoCliente;
 
