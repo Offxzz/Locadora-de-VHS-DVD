@@ -109,6 +109,10 @@ void criarArquivoInicialCompras() {
     fprintf(arq, "6;Shrek (DVD);Distribuidora Cine Max;36.50;7;6\n");
     fprintf(arq, "7;De Volta para o Futuro (DVD);Video Atacado;41.00;3;7\n");
     fprintf(arq, "8;Os Caca-Fantasmas (VHS);Locadora Fita Dourada;24.90;5;8\n");
+    fprintf(arq, "9;Interestelar (DVD);Distribuidora Cine Max;12.50;7;9\n"); 
+    fprintf(arq, "10;Carros (DVD); Video Atacado;32.00;5;10\n");
+
+")
     fclose(arq);
 }
 
