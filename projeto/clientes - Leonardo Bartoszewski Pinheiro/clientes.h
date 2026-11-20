@@ -108,14 +108,16 @@ int carregarClientesCSV() {
 }
 
 void criarMassaDadosClientes() {
-    inserirCliente("Ana Souza",       "(41) 99999-0001", 0, 0.00);
-    inserirCliente("Bruno Lima",      "(41) 99999-0002", 2, 0.00);
-    inserirCliente("Carla Mendes",    "(41) 99999-0003", 1, 7.50);
-    inserirCliente("Diego Santos",    "(41) 99999-0004", 0, 0.00);
-    inserirCliente("Elisa Ferreira",  "(41) 99999-0005", 3, 0.00);
-    inserirCliente("Felipe Rocha",    "(41) 99999-0006", 0, 15.00);
-    inserirCliente("Gabriela Alves",  "(41) 99999-0007", 1, 0.00);
-    inserirCliente("Henrique Costa",  "(41) 99999-0008", 0, 3.25);
+    inserirCliente("Ana Souza",       "(41) 99351-1211", 0, 0.00);
+    inserirCliente("Bruno Lima",      "(41) 99293-2232", 2, 0.00);
+    inserirCliente("Carla Mendes",    "(41) 99841-8723", 1, 7.50);
+    inserirCliente("Diego Santos",    "(41) 99762-2424", 0, 0.00);
+    inserirCliente("Elisa Ferreira",  "(41) 99098-8975", 3, 0.00);
+    inserirCliente("Felipe Rocha",    "(41) 99112-2326", 0, 15.00);
+    inserirCliente("Gabriela Alves",  "(41) 99886-2747", 1, 0.00);
+    inserirCliente("Henrique Costa",  "(41) 99443-4528", 0, 3.25);
+    inserirCliente("Gustavo da Rocha", "(41) 99814-7979", 1, 0.00); 
+    inserirCliente("Alcione Silva", "(41) 99154-1010", 1, 0.00);
     salvarClientesCSV();
 }
 
